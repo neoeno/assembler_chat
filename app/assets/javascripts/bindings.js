@@ -11,10 +11,20 @@ $(document).ready(function() {
   var Elements = ElementsFactory();
   var Render = RenderFactory(Elements);
 
+  var chatChannel = App.cable.subscriptions.create("ChatChannel", {
+    received: function(message) {
+      ChatService.submitMessage(message.body);
+      Render.messageList(ChatService.getMessageList());
+    }
+  });
+
   Elements.$chatMessageForm.on('submit', function(evt) {
     evt.preventDefault();
 
-    ChatService.submitMessage(Elements.$messageField.val());
+    var messageText = Elements.$messageField.val();
+    ChatService.submitMessage(messageText);
+    chatChannel.send({body: messageText});
+
     Render.messageList(ChatService.getMessageList());
     Render.messageForm("");
   });

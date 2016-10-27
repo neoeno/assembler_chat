@@ -9,6 +9,7 @@ Feature: Chat
     Then I see my message at the bottom of the list
     And my message field is reset
 
+  @javascript
   Scenario:
     Given an empty list
     When Geoff adds a message to the list

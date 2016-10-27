@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Allow our feature tests to use actioncable
+  config.action_cable.allowed_request_origins = [ /http:\/\/127.0.0.1:.*/ ]
 end
