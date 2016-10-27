@@ -196,6 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  capybara
   cucumber-rails
   database_cleaner
   jbuilder (~> 2.5)
