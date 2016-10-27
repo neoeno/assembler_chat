@@ -2,10 +2,12 @@ Feature: Chat
   Users want to chat to their pals by adding messages to a list
   Every user can see the board update as they and others add to it
 
+  @javascript
   Scenario:
     Given an empty list
     When I add a message to the list
     Then I see my message at the bottom of the list
+    And my message field is reset
 
   Scenario:
     Given an empty list

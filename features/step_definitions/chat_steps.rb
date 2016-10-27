@@ -10,5 +10,9 @@ When(/^I add a message to the list$/) do
 end
 
 Then(/^I see my message at the bottom of the list$/) do
-  expect(find("#room")).to have_content("A message")
+  expect(find("#message_list")).to have_content("A message")
+end
+
+Then(/^my message field is reset$/) do
+  expect(page).to have_field('Message', with: '')
 end
