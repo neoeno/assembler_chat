@@ -19,5 +19,13 @@ describe("ChatService", function() {
       ChatService.submitMessage(message);
       expect(ChatService.getMessageList()).toEqual([message]);
     });
+
+    it("adds messages to the end of the message list", function() {
+      var message1 = "hello 1";
+      var message2 = "world 2"
+      ChatService.submitMessage(message1);
+      ChatService.submitMessage(message2);
+      expect(ChatService.getMessageList()).toEqual([message1, message2]);
+    })
   });
 });
