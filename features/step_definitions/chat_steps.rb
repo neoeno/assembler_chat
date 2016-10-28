@@ -20,11 +20,11 @@ When(/^Geoff adds a message to the list$/) do
 end
 
 Then(/^I see my message in the list$/) do
-  expect(@chat_page.message_list).to have_content "A message"
+  expect(@chat_page.messages).to eq ["A message"]
 end
 
 Then(/^I see Geoff's message in the list$/) do
-  expect(@chat_page.message_list).to have_content "hello i'm geoff"
+  expect(@chat_page.messages).to eq ["hello i'm geoff"]
 end
 
 Then(/^my message field is reset$/) do
