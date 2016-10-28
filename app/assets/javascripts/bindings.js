@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   var chatChannel = App.cable.subscriptions.create("ChatChannel", {
     received: function(message) {
-      ChatService.submitMessage(message.body);
+      ChatService.submitMessage(message);
       Render.messageList(ChatService.getMessageList());
     }
   });
@@ -22,9 +22,9 @@ $(document).ready(function() {
     evt.preventDefault();
 
     var messageText = Elements.$messageField.val();
-    chatChannel.send({body: messageText});
+    var username = Elements.$usernameField.val();
+    chatChannel.send({username: username, body: messageText});
 
-    Render.messageList(ChatService.getMessageList());
     Render.messageForm("");
   });
 });
