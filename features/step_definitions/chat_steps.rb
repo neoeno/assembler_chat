@@ -11,8 +11,7 @@ Given(/^an empty list$/) do
 end
 
 When(/^I add a message to the list$/) do
-  @chat_page.message_body_field.set MY_MESSAGE
-  @chat_page.send_button.click
+  @chat_page.send_message MY_MESSAGE
 end
 
 When(/^I set my username to Kay$/) do
@@ -23,20 +22,19 @@ When(/^Geoff adds a message to the list$/) do
   Capybara.using_session(GEOFF_SESSION) do
     @chat_page = ChatIndexPage.new
     @chat_page.load
-    @chat_page.message_body_field.set GEOFFS_MESSAGE
-    @chat_page.send_button.click
+    @chat_page.send_message GEOFFS_MESSAGE
   end
 end
 
 Then(/^I see my message in the list$/) do
-  expect(@chat_page.message_list).to eq [{
+  expect(@chat_page).to have_exactly_these_messages [{
     username: @chat_page.username,
     body: MY_MESSAGE
   }]
 end
 
 Then(/^I see my username by my message in the list$/) do
-  expect(@chat_page.message_list).to eq [{
+  expect(@chat_page).to have_exactly_these_messages [{
     username: @chat_page.username,
     body: MY_MESSAGE
   }]
@@ -44,7 +42,7 @@ end
 
 Then(/^I see Geoff's message in the list$/) do
   geoff_username = Capybara.using_session(GEOFF_SESSION) { @chat_page.username }
-  expect(@chat_page.message_list).to eq [{
+  expect(@chat_page).to have_exactly_these_messages [{
     username: geoff_username,
     body: GEOFFS_MESSAGE
   }]
@@ -52,7 +50,7 @@ end
 
 Then(/^I see Geoff's message first, then mine$/) do
   geoff_username = Capybara.using_session(GEOFF_SESSION) { @chat_page.username }
-  expect(@chat_page.message_list).to eq [
+  expect(@chat_page).to have_exactly_these_messages [
     {
       username: geoff_username,
       body: GEOFFS_MESSAGE
