@@ -22,7 +22,6 @@ $(document).ready(function() {
     evt.preventDefault();
 
     var messageText = Elements.$messageField.val();
-    ChatService.submitMessage(messageText);
     chatChannel.send({body: messageText});
 
     Render.messageList(ChatService.getMessageList());
