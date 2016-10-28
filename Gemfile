@@ -42,6 +42,7 @@ group :test do
   gem 'poltergeist'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'site_prism'
 end
 
 group :development do

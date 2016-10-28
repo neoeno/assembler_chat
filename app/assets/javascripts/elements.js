@@ -4,7 +4,7 @@
 function ElementsFactory() {
   var $messageList = $("#message_list");
   var $chatMessageForm = $("#chat_message_form");
-  var $messageField = $chatMessageForm.find("#message");
+  var $messageField = $chatMessageForm.find("#chat_message_form_body");
 
   return {
     $messageList: $messageList,
