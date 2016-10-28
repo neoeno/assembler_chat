@@ -4,7 +4,7 @@ function ChatServiceFactory() {
   var messageList = [];
 
   function submitMessage(message) {
-    messageList.unshift(message);
+    messageList.push(message);
   }
 
   function getMessageList() {

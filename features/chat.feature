@@ -20,5 +20,4 @@ Feature: Chat
     Given an empty list
     When Geoff adds a message to the list
     And I add a message to the list
-    Then I see Geoff's message first
-    And I see my message second
+    Then I see Geoff's message first, then mine
