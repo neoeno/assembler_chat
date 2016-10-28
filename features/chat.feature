@@ -5,27 +5,27 @@ Feature: Chat
   Users can edit their username for future messages
 
   @javascript
-  Scenario:
+  Scenario: We can post a message to the list
     Given an empty list
     When I add a message to the list
     Then I see my message in the list
     And my message field is reset
 
   @javascript
-  Scenario:
+  Scenario: Our username is shown alongside our message
     Given an empty list
     When I add a message to the list
     Then I see my username by my message in the list
 
   @javascript
-  Scenario: # Tests other users can add messages and we see them — also tests usernames and should be broken out
+  Scenario: Other users can add messages and we see them # also tests usernames and should be broken out
     Given an empty list
     When Geoff sets his username
     And Geoff adds a message to the list
     Then I see Geoff's message in the list
 
   @javascript
-  Scenario: # Tests messages come through in the right order
+  Scenario: Messages are displayed oldest to newest
     Given an empty list
     When Geoff sets his username
     And Geoff adds a message to the list
