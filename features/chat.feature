@@ -18,16 +18,21 @@ Feature: Chat
     Then I see my username by my message in the list
 
   @javascript
-  Scenario: Other users can add messages and we see them # also tests usernames and should be broken out
+  Scenario: We can change our username
     Given an empty list
-    When Geoff sets his username
-    And Geoff adds a message to the list
+    When I set my username to Kay
+    And I add a message to the list
+    Then I see my username by my message in the list
+
+  @javascript
+  Scenario: Other users can add messages
+    Given an empty list
+    When Geoff adds a message to the list
     Then I see Geoff's message in the list
 
   @javascript
   Scenario: Messages are displayed oldest to newest
     Given an empty list
-    When Geoff sets his username
-    And Geoff adds a message to the list
+    When Geoff adds a message to the list
     And I add a message to the list
     Then I see Geoff's message first, then mine
