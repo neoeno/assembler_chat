@@ -5,7 +5,7 @@ var RenderFactory = function(Elements) {
     var $newMessages = list.map(function(message) {
       var $username = $("<span class='test-message-username'>").text(message.username);
       var $body = $("<span class='test-message-body'>").text(message.body);
-      var $listItem = $("<li>");
+      var $listItem = $("<li class='test-message'>");
       $listItem.append($username);
       $listItem.append($body);
       return $listItem;

@@ -29,14 +29,14 @@ When(/^Geoff adds a message to the list$/) do
 end
 
 Then(/^I see my message in the list$/) do
-  expect(@chat_page.messages).to eq [{
+  expect(@chat_page.message_list).to eq [{
     username: @chat_page.username,
     body: MY_MESSAGE
   }]
 end
 
 Then(/^I see my username by my message in the list$/) do
-  expect(@chat_page.messages).to eq [{
+  expect(@chat_page.message_list).to eq [{
     username: @chat_page.username,
     body: MY_MESSAGE
   }]
@@ -44,7 +44,7 @@ end
 
 Then(/^I see Geoff's message in the list$/) do
   geoff_username = Capybara.using_session(GEOFF_SESSION) { @chat_page.username }
-  expect(@chat_page.messages).to eq [{
+  expect(@chat_page.message_list).to eq [{
     username: geoff_username,
     body: GEOFFS_MESSAGE
   }]
@@ -52,7 +52,7 @@ end
 
 Then(/^I see Geoff's message first, then mine$/) do
   geoff_username = Capybara.using_session(GEOFF_SESSION) { @chat_page.username }
-  expect(@chat_page.messages).to eq [
+  expect(@chat_page.message_list).to eq [
     {
       username: geoff_username,
       body: GEOFFS_MESSAGE

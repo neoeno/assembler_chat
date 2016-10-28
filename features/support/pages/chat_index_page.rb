@@ -1,3 +1,5 @@
+require_relative "./chat_message_section"
+
 class ChatIndexPage < SitePrism::Page
   set_url "/"
 
@@ -6,15 +8,10 @@ class ChatIndexPage < SitePrism::Page
   element :send_button, "#chat_message_form_submit"
   element :message_list, "#message_list"
 
-  elements :message_elements, "#message_list li"
+  sections :messages, ChatMessageSection, ".test-message"
 
-  def messages
-    message_elements.map do |element|
-      {
-        username: element.find(".test-message-username").text,
-        body: element.find(".test-message-body").text
-      }
-    end
+  def message_list
+    messages.map(&:to_h)
   end
 
   def username
