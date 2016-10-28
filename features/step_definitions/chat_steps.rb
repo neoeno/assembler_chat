@@ -17,11 +17,11 @@ When(/^Geoff adds a message to the list$/) do
   end
 end
 
-Then(/^I see my message at the bottom of the list$/) do
+Then(/^I see my message in the list$/) do
   expect(find("#message_list")).to have_content("A message")
 end
 
-Then(/^I see Geoff's message at the bottom of the list$/) do
+Then(/^I see Geoff's message in the list$/) do
   expect(find("#message_list")).to have_content("A message from Geoff")
 end
 
