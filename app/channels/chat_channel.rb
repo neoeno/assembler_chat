@@ -5,6 +5,11 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast("the_room", data)
+    # Channels have some strange initialization / forking? stuff going on which
+    # hampers our attempt to make this an instance variable, so we'll initialize
+    # it each time for now
+    message_store = MessageStore.new
+    message = message_store.receive(data)
+    ActionCable.server.broadcast("the_room", message)
   end
 end
