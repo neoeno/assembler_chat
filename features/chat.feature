@@ -36,3 +36,10 @@ Feature: Chat
     When Geoff adds a message to the list
     And I add a message to the list
     Then I see Geoff's message first, then mine
+
+  @javascript
+  Scenario: We can see messages sent before we visited the site
+    Given an empty list
+    When Geoff adds a message to the list
+    And I open the chat page
+    Then I see Geoff's message in the list

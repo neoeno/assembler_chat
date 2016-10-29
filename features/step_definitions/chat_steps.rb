@@ -10,6 +10,10 @@ Given(/^an empty list$/) do
   @chat_page.load
 end
 
+When(/^I open the chat page$/) do
+  @chat_page.load
+end
+
 When(/^I add a message to the list$/) do
   @chat_page.send_message MY_MESSAGE
 end
