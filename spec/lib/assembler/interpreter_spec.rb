@@ -24,6 +24,23 @@ RSpec.describe Assembler::Interpreter do
       })
     end
 
+    it "interprets mov statements with two registers" do
+      state = subject.initial_state.merge({"bx" => 10})
+      statement = "mov AX, BX"
+      expect(subject.interpret(state, statement)).to eq({
+        "ax" => 10,
+        "bx" => 10,
+        "cx" => 0,
+        "dx" => 0
+      })
+    end
+
+    it "throws for mov statements with invalid registers" do
+      state = subject.initial_state
+      statement = "mov AX, ZZ"
+      expect { subject.interpret(state, statement) }.to raise_error(Assembler::InterpreterException)
+    end
+
     it "throws InterpreterException on lexing errors" do
       state = subject.initial_state
       statement = "fb788qghf74qh98qh"

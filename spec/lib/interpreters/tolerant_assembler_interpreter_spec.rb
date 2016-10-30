@@ -24,17 +24,6 @@ RSpec.describe Interpreters::TolerantAssemblerInterpreter do
       })
     end
 
-    it "interprets mov statements with two registers" do
-      state = subject.initial_state.merge({"bx" => 10})
-      statement = "mov AX, BX"
-      expect(subject.interpret(state, statement)).to eq({
-        "ax" => 10,
-        "bx" => 10,
-        "cx" => 0,
-        "dx" => 0
-      })
-    end
-
     it "returns initial state on erroneous input" do
       state = subject.initial_state
       statement = "fb788qghf74qh98qh"
