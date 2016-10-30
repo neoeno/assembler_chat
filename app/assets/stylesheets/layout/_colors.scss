@@ -1,7 +1,7 @@
 $foreground: black;
-$foreground-notice: lighten($foreground, 50%);
+$foreground-notice: lighten($foreground, 30%);
 
-$active: darken(rgba(99, 195, 232, 1), 25%);
+$active: #146585;
 $active-hover: lighten($active, 5%);
 $active-shadow: darken($active, 25%);
 
