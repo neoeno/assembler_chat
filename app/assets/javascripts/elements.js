@@ -8,7 +8,9 @@ function ElementsFactory() {
   var $messageField = $chatMessageForm.find("#chat_message_form_body");
   var $machineState = {
     ax: $("#register_ax"),
-    bx: $("#register_bx")
+    bx: $("#register_bx"),
+    cx: $("#register_cx"),
+    dx: $("#register_dx")
   }
 
   return {
