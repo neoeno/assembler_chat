@@ -1,8 +1,16 @@
-<form id="chat_message_form">
-  <label for="chat_message_form_username">Username</label>
-  <input type="text" id="chat_message_form_username" value="<%= random_username %>">
-  <label for="chat_message_form_body">Message</label>
-  <input type="text" id="chat_message_form_body">
+<form class="message-form" id="chat_message_form">
+  <div class="message-form__username-field">
+    <label class="form-field__label" for="chat_message_form_username">Username</label>
+    <input class="form-field__input" type="text" id="chat_message_form_username" value="<%= random_username %>">
+  </div>
 
-  <button id="chat_message_form_submit">Send</button>
+  <div class="message-form__message-field">
+    <label class="form-field__label" for="chat_message_form_body">Message</label>
+    <input class="form-field__input" type="text" id="chat_message_form_body">
+  </div>
+
+
+  <div class="message-form__submit">
+    <button class="button" id="chat_message_form_submit">Send</button>
+  </div>
 </form>

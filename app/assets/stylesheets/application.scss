@@ -1,0 +1,10 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@import "normalize-rails";
+@import "layout/_colors";
+@import "layout/_typography";
+@import "components/_form_field";
+@import "components/_message_form";
+@import "components/_button";

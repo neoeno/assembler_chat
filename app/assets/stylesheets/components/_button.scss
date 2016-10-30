@@ -1,0 +1,24 @@
+.button {
+  position: relative;
+  line-height: 2;
+  padding: 0.5;
+  width: 100%;
+
+  background: $active;
+  color: white;
+  border: 0;
+  box-shadow: 3px 3px $active-shadow;
+  outline: 0;
+
+  &:hover, &:focus {
+    background: $active-hover;
+  }
+
+  &:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: 1px 1px $active-shadow;
+
+  }
+}

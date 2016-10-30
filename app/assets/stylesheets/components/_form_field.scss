@@ -1,0 +1,22 @@
+.form-field__label {
+  display: block;
+  color: $foreground-notice;
+  text-transform: lowercase;
+  font-variant: small-caps;
+  line-height: 2;
+}
+
+.form-field__input {
+  width: 100%;
+
+
+  &:focus {
+    outline-color: $active;
+    outline-width: 2px;
+    outline-style: solid;
+  }
+
+  &[type="text"] {
+    padding: 0.5em;
+  }
+}

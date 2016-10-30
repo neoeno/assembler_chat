@@ -1,0 +1,30 @@
+.message-form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  padding: 1rem;
+}
+
+%message-form-field {
+  margin: 1rem;
+}
+
+.message-form__username-field {
+  @extend %message-form-field;
+  flex: 1 1 auto;
+  max-width: 15rem;
+}
+
+.message-form__message-field {
+  @extend %message-form-field;
+  flex: 2 2 auto;
+}
+
+.message-form__submit {
+  @extend %message-form-field;
+  flex: 1 1 auto;
+  max-width: 15rem;
+  padding-top: 2rem;
+}
