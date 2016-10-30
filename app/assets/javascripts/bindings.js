@@ -38,4 +38,10 @@ $(document).ready(function() {
 
     Render.messageForm("");
   });
+
+  // We want to focus the message field, but focusing an element doesn't
+  // 'stick' for a little while, so we wait 100ms or so
+  setTimeout(function() {
+    Elements.$messageField.focus();
+  }, 100);
 });
