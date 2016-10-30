@@ -5,8 +5,16 @@
 # to fail in future, we'll put it all here
 
 class MessageStore
+  def initialize
+    @message_interpreter = Interpreters::MessageInterpreter.new(
+      Interpreters::TolerantAssemblerInterpreter.new
+    )
+  end
+
   def post_message(json_message)
-    Message.create(safe_params(json_message))
+    attributes = safe_params(json_message)
+    attributes = attributes.merge({state: interpret(attributes[:body])})
+    Message.create(attributes)
   end
 
   def latest_messages
@@ -16,5 +24,11 @@ class MessageStore
   private def safe_params(raw_params)
     params = ActionController::Parameters.new(raw_params)
     params.permit(:username, :body)
+  end
+
+  private def interpret(message_body)
+    latest_message = latest_messages.last
+    prior_state = latest_message.try(:state) || @message_interpreter.initial_state
+    @message_interpreter.interpret(prior_state, message_body)
   end
 end

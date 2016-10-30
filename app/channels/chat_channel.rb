@@ -10,18 +10,12 @@ class ChatChannel < ApplicationCable::Channel
   def receive(data)
     message = @message_store.post_message(data)
     ActionCable.server.broadcast("the_room", ChatEvent.new_message(message))
-    ActionCable.server.broadcast("the_room", dirty_assemble!(message))
+    ActionCable.server.broadcast("the_room", ChatEvent.state_change(message.state))
   end
 
   private def transmit_message_sync_event!
     transmit(
       ChatEvent.sync_messages(@message_store.latest_messages)
-    )
-  end
-
-  private def dirty_assemble!(message)
-    ChatEvent.new("stateChange",
-      @message_assembler.interpret(@message_assembler.initial_state, message.body)
     )
   end
 end

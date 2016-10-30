@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MessageStore do
   EXAMPLE_MESSAGE_JSON = {"username" => "my_username", "body" => "hello I am a chat"}.freeze
+  EXECUTABLE_MESSAGE_JSON = {"username" => "my_username", "body" => "MOV ax, 5d"}.freeze
 
   describe "#post_message" do
     it "returns a representative message object" do
@@ -20,6 +21,64 @@ RSpec.describe MessageStore do
 
       message = Message.find(allegedly_saved_message.id)
       expect(message.attributes).to include EXAMPLE_MESSAGE_JSON
+    end
+
+    context "with an empty message store" do
+      context "and a non-executable message" do
+        let(:message) { subject.post_message(EXAMPLE_MESSAGE_JSON) }
+
+        it "sets the messate state to the initial state" do
+          expect(message.state).to eq({
+            "ax" => 0,
+            "bx" => 0,
+            "cx" => 0,
+            "dx" => 0
+          })
+        end
+      end
+
+      context "and an executable message" do
+        let(:message) { subject.post_message(EXECUTABLE_MESSAGE_JSON) }
+
+        it "executes on the initial state" do
+          expect(message.state).to eq({
+            "ax" => 5,
+            "bx" => 0,
+            "cx" => 0,
+            "dx" => 0
+          })
+        end
+      end
+    end
+
+    context "with a message store containing state already" do
+      before { subject.post_message({"username" => "my_username", "body" => "MOV bx, 10d"}) }
+
+      context "and a non-executable message" do
+        let(:message) { subject.post_message(EXAMPLE_MESSAGE_JSON) }
+
+        it "sets the messate state to the initial state" do
+          expect(message.state).to eq({
+            "ax" => 0,
+            "bx" => 10,
+            "cx" => 0,
+            "dx" => 0
+          })
+        end
+      end
+
+      context "and an executable message" do
+        let(:message) { subject.post_message(EXECUTABLE_MESSAGE_JSON) }
+
+        it "executes on the initial state" do
+          expect(message.state).to eq({
+            "ax" => 5,
+            "bx" => 10,
+            "cx" => 0,
+            "dx" => 0
+          })
+        end
+      end
     end
   end
 

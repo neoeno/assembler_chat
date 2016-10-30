@@ -15,6 +15,14 @@ RSpec.describe Message, type: :model do
       message = Message.new(REASONABLE_ATTRIBUTES)
       expect(message.state).to eq({"a" => 1})
     end
+
+    context "when state_json is blank" do
+      it "returns nil" do
+        message = Message.new(REASONABLE_ATTRIBUTES)
+        message.state_json = nil
+        expect(message.state).to be_nil
+      end
+    end
   end
 
   describe "#state=" do

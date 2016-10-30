@@ -4,6 +4,7 @@ class Message < ApplicationRecord
   end
 
   def state
+    return if state_json.blank?
     JSON.parse(state_json)
   end
 end
