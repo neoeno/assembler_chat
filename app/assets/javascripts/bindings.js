@@ -15,7 +15,8 @@ $(document).ready(function() {
   var chatChannel = App.cable.subscriptions.create("ChatChannel", {
     received: EventRouter('type', {
       newMessage: handleNewMessage,
-      syncMessages: handleSyncMessages
+      syncMessages: handleSyncMessages,
+      stateChange: handleStateChange
     })
   });
 
@@ -27,6 +28,10 @@ $(document).ready(function() {
   function handleSyncMessages(messages) {
     ChatService.replaceMessageList(messages)
     Render.messageList(ChatService.getMessageList())
+  }
+
+  function handleStateChange(state) {
+    Render.machineState(state);
   }
 
   Elements.$chatMessageForm.on('submit', function(evt) {

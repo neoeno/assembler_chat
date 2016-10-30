@@ -23,8 +23,17 @@ var RenderFactory = function(Elements) {
     Elements.$messageField.val(message);
   }
 
+  function machineState(state) {
+    Object.keys(state).forEach(function(register) {
+      if (Elements.$machineState[register]) {
+        Elements.$machineState[register].text(state[register]);
+      }
+    });
+  }
+
   return {
     messageList: messageList,
-    messageForm: messageForm
+    messageForm: messageForm,
+    machineState: machineState
   }
 };

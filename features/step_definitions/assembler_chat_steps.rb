@@ -3,5 +3,5 @@ When(/^I post "([^"]*)" to the list$/) do |message|
 end
 
 Then(/^I see register AX change to (\d+)$/) do |number|
-  expect(@chat_page.machine_state).to have_register_ax(content: number)
+  expect(@chat_page.machine_state.register_ax).to have_text number
 end

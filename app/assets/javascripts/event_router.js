@@ -8,7 +8,7 @@ function EventRouter(typeAttribute, handlers) {
     }
 
     if (!handlers[eventObject[typeAttribute]]) {
-      console.error("Could not handle event of type", eventObject.eventType);
+      console.error("Could not handle event of type", eventObject[typeAttribute]);
       return;
     }
 
