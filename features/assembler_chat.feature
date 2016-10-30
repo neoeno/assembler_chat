@@ -10,6 +10,12 @@ Feature: Assembler Chat
     Then I see register "AX" is 1
 
   @javascript
+  Scenario: We can see state updates from other users
+    Given an empty list
+    When Geoff posts "mov ax, 1d" to the list
+    Then I see register "AX" is 1
+
+  @javascript
   Scenario: Our commands operate on the previous state without clobbering it
     Given an empty list
     When I post "mov ax, 1d" to the list
