@@ -7,7 +7,8 @@ function ElementsFactory() {
   var $usernameField = $chatMessageForm.find("#chat_message_form_username");
   var $messageField = $chatMessageForm.find("#chat_message_form_body");
   var $machineState = {
-    ax: $("#register_ax")
+    ax: $("#register_ax"),
+    bx: $("#register_bx")
   }
 
   return {

@@ -7,4 +7,12 @@ Feature: Assembler Chat
   Scenario: We can post an assembler command to the list and see the state change
     Given an empty list
     When I post "mov ax, 1d" to the list
-    Then I see register AX change to 1
+    Then I see register AX is 1
+
+  @javascript
+  Scenario: Our commands operate on the previous state without clobbering it
+    Given an empty list
+    When I post "mov ax, 1d" to the list
+    When I post "mov bx, 5d" to the list
+    Then I see register AX is 1
+    Then I see register BX is 5
