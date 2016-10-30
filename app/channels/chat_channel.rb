@@ -13,7 +13,7 @@ class ChatChannel < ApplicationCable::Channel
 
   def transmit_message_sync_event!
     transmit(
-      ChatEvent.sync_messages(Message.order(created_at: :asc))
+      ChatEvent.sync_messages(@message_store.latest_messages)
     )
   end
 end

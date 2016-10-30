@@ -9,6 +9,10 @@ class MessageStore
     Message.create(safe_params(json_message))
   end
 
+  def latest_messages
+    Message.order(created_at: :asc).last(100)
+  end
+
   private def safe_params(raw_params)
     params = ActionController::Parameters.new(raw_params)
     params.permit(:username, :body)
