@@ -2,6 +2,7 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
     stream_from "the_room"
+    transmit({eventType: "syncMessages", messages: Message.order(created_at: :asc)})
   end
 
   def receive(data)
@@ -10,6 +11,6 @@ class ChatChannel < ApplicationCable::Channel
     # it each time for now
     message_store = MessageStore.new
     message = message_store.receive(data)
-    ActionCable.server.broadcast("the_room", message)
+    ActionCable.server.broadcast("the_room", {eventType: "newMessage", message: message})
   end
 end

@@ -12,9 +12,14 @@ $(document).ready(function() {
   var Render = RenderFactory(Elements);
 
   var chatChannel = App.cable.subscriptions.create("ChatChannel", {
-    received: function(message) {
-      ChatService.submitMessage(message);
-      Render.messageList(ChatService.getMessageList());
+    received: function(evt) {
+      if (evt.eventType == "newMessage") {
+        ChatService.submitMessage(evt.message);
+        Render.messageList(ChatService.getMessageList());
+      } else if (evt.eventType == "syncMessages") {
+        evt.messages.forEach(function(message) { ChatService.submitMessage(message); });
+        Render.messageList(ChatService.getMessageList())
+      }
     }
   });
 
