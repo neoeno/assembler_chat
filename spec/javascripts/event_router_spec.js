@@ -5,8 +5,8 @@ describe("EventRouter", function() {
 
   beforeEach(function() {
     eventRouter = EventRouter("eventType", {
-      returnsItsArgument: function(obj) { return obj; },
-      returnsAString: function(obj) { return "aString"; }
+      returnsItsPayload: function(payload) { return payload; },
+      returnsAString: function(payload) { return "aString"; }
     });
   });
 
@@ -15,9 +15,9 @@ describe("EventRouter", function() {
       expect(eventRouter({eventType: "returnsAString"})).toEqual("aString");
     });
 
-    it("calls the corresponding function with the event object", function() {
-      var event = {eventType: "returnsItsArgument"};
-      expect(eventRouter(event)).toEqual(event);
+    it("calls the corresponding function with the payload object", function() {
+      var event = {eventType: "returnsItsPayload", payload: {hello: "world"}};
+      expect(eventRouter(event)).toEqual(event.payload);
     });
   });
 

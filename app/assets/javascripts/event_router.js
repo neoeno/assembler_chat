@@ -12,6 +12,6 @@ function EventRouter(typeAttribute, handlers) {
       return;
     }
 
-    return handlers[eventObject[typeAttribute]](eventObject);
+    return handlers[eventObject[typeAttribute]](eventObject.payload);
   }
 }

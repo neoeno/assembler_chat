@@ -13,19 +13,19 @@ $(document).ready(function() {
   var Render = RenderFactory(Elements);
 
   var chatChannel = App.cable.subscriptions.create("ChatChannel", {
-    received: EventRouter('eventType', {
+    received: EventRouter('type', {
       newMessage: handleNewMessage,
       syncMessages: handleSyncMessages
     })
   });
 
-  function handleNewMessage(evt) {
-    ChatService.submitMessage(evt.message);
+  function handleNewMessage(message) {
+    ChatService.submitMessage(message);
     Render.messageList(ChatService.getMessageList());
   }
 
-  function handleSyncMessages(evt) {
-    ChatService.replaceMessageList(evt.messages)
+  function handleSyncMessages(messages) {
+    ChatService.replaceMessageList(messages)
     Render.messageList(ChatService.getMessageList())
   }
 
