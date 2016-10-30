@@ -23,13 +23,19 @@ describe("EventRouter", function() {
 
   describe("sent an event with an eventType it does not know about", function() {
     it("returns undefined", function() {
+      var errorHandler = console.error;
+      console.error = function() {}; // Silence console errors as we're expecting them
       expect(eventRouter({eventType: "notAnEvent"})).toEqual(undefined);
+      console.error = errorHandler;
     });
   });
 
   describe("sent an event without the attribute we've been asked to switch on", function() {
     it("returns undefined", function() {
+      var errorHandler = console.error;
+      console.error = function() {}; // Silence console errors as we're expecting them
       expect(eventRouter({})).toEqual(undefined);
+      console.error = errorHandler;
     });
   });
 });
