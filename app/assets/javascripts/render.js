@@ -7,7 +7,7 @@ var RenderFactory = function(Elements) {
 
     // Also scroll to the bottom of the list, otherwise new messages appear
     // 'below the fold'
-    Elements.$messageList.scrollTop(Elements.$messageList.height());
+    Elements.$messageList.scrollTop(Elements.$messageList.get(0).scrollHeight);
   }
 
   function message(message) {
