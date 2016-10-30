@@ -24,6 +24,17 @@ RSpec.describe Assembler::Interpreter do
       })
     end
 
+    it "interprets dec statements" do
+      state = subject.initial_state.merge({"ax" => 3})
+      statement = "dec AX"
+      expect(subject.interpret(state, statement)).to eq({
+        "ax" => 2,
+        "bx" => 0,
+        "cx" => 0,
+        "dx" => 0
+      })
+    end
+
     it "interprets mov statements" do
       state = subject.initial_state
       statement = "mov AX, 10d"

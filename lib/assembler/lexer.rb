@@ -1,5 +1,5 @@
 class Assembler::Lexer < RLTK::Lexer
-  rule(/inc/i)     { |c| [:COMMAND_1, c.downcase] }
+  rule(/inc|dec/i) { |c| [:COMMAND_1, c.downcase] }
   rule(/mov/i)     { |c| [:COMMAND_2, c.downcase] }
   rule(/[a-d]x/i)  { |r| [:REGISTER, r.downcase] }
   rule(/,/)        { :ARGUMENT_SEPARATOR }

@@ -3,7 +3,8 @@ class Assembler::Executor
   # a bit of a worry security-wise
   COMMANDS = {
     "mov" => Assembler::Commands::Mov,
-    "inc" => Assembler::Commands::Inc
+    "inc" => Assembler::Commands::Inc,
+    "dec" => Assembler::Commands::Dec
   }.freeze
 
   def self.execute(state, statement)
