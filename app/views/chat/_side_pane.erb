@@ -1,6 +1,7 @@
-<div class="machine-state test-machine-state">
-  <h2 class="machine-state__heading">Machine State</h2>
-  <ul class="machine-state__list">
+<div class="side-pane">
+  <h2 class="side-pane__heading">Machine State</h2>
+
+  <ul class="machine-state__list test-machine-state">
     <li class="machine-state__pair">
       <div class="machine-state__label">AX</div>
       <div class="machine-state__value test-register-ax" id="register_ax">0</div>
@@ -17,5 +18,11 @@
       <div class="machine-state__label">DX</div>
       <div class="machine-state__value test-register-dx" id="register_dx">0</div>
     </li>
+  </ul>
+
+  <h2 class="side-pane__heading">Commands</h2>
+
+  <ul class="reference-list">
+    <li>mov ax, 10d</li>
   </ul>
 </div>

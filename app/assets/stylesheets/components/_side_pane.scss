@@ -1,0 +1,20 @@
+.side-pane {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 6.875rem;
+  padding: 1rem;
+  width: 15vw;
+  background: $console-background;
+  color: $console-foreground;
+  font-family: monospace;
+}
+
+.side-pane__heading {
+  margin-top: 2rem;
+  font-size: 1rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
