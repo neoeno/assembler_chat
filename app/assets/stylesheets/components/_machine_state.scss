@@ -1,0 +1,33 @@
+.machine-state {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 6.875rem;
+  padding: 1rem;
+  width: 15vw;
+  background: $console-background;
+  color: $console-foreground;
+  font-family: monospace;
+}
+
+.machine-state__heading {
+  margin-top: 0;
+}
+
+.machine-state__list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.machine-state__pair {
+  margin-bottom: 1em;
+}
+
+.machine-state__label {
+  line-height: 2;
+}
+
+.machine-state__value {
+  border: 1px solid currentcolor;
+  padding: 0.5em;
+}
