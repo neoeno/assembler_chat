@@ -7,7 +7,7 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    message = @message_store.receive(data)
+    message = @message_store.post_message(data)
     ActionCable.server.broadcast("the_room", ChatEvent.new_message(message))
   end
 

@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.describe MessageStore do
   EXAMPLE_MESSAGE_JSON = {"username" => "my_username", "body" => "hello I am a chat"}.freeze
 
-  describe "#receive" do
+  describe "#post_message" do
     it "returns a representative message object" do
-      message = subject.receive(EXAMPLE_MESSAGE_JSON)
+      message = subject.post_message(EXAMPLE_MESSAGE_JSON)
       expect(message.attributes).to include EXAMPLE_MESSAGE_JSON
     end
 
     it "does not apply extraneous attributes" do
       extraneous_attributes = {"id" => 5}
-      message = subject.receive(EXAMPLE_MESSAGE_JSON.merge(extraneous_attributes))
+      message = subject.post_message(EXAMPLE_MESSAGE_JSON.merge(extraneous_attributes))
       expect(message.attributes).to_not include extraneous_attributes
     end
 
     it "persists the message object to the database" do
-      allegedly_saved_message = subject.receive(EXAMPLE_MESSAGE_JSON)
+      allegedly_saved_message = subject.post_message(EXAMPLE_MESSAGE_JSON)
 
       message = Message.find(allegedly_saved_message.id)
       expect(message.attributes).to include EXAMPLE_MESSAGE_JSON

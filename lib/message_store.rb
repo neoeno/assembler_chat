@@ -5,7 +5,7 @@
 # to fail in future, we'll put it all here
 
 class MessageStore
-  def receive(json_message)
+  def post_message(json_message)
     Message.create(safe_params(json_message))
   end
 
