@@ -1,0 +1,10 @@
+.message-list {
+  position: absolute;
+  top: 0;
+  bottom: 6.875rem; // The height of the bottom bar, give or take a few px
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 1em 0;
+  overflow-y: scroll;
+}
