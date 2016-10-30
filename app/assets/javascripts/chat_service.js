@@ -7,12 +7,17 @@ function ChatServiceFactory() {
     messageList.push(message);
   }
 
+  function replaceMessageList(messages) {
+    messageList = messages;
+  }
+
   function getMessageList() {
     return messageList;
   }
 
   return {
     submitMessage: submitMessage,
-    getMessageList: getMessageList
+    getMessageList: getMessageList,
+    replaceMessageList: replaceMessageList
   };
 }

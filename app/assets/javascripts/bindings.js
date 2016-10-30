@@ -25,7 +25,7 @@ $(document).ready(function() {
   }
 
   function handleSyncMessages(evt) {
-    evt.messages.forEach(function(message) { ChatService.submitMessage(message); });
+    ChatService.replaceMessageList(evt.messages)
     Render.messageList(ChatService.getMessageList())
   }
 

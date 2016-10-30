@@ -28,4 +28,12 @@ describe("ChatService", function() {
       expect(ChatService.getMessageList()).toEqual([message1, message2]);
     })
   });
+
+  describe(".replaceMessageList", function() {
+    it("resets the message list to the given list", function() {
+      var newMessageList = ["hello", "world"];
+      ChatService.replaceMessageList(newMessageList);
+      expect(ChatService.getMessageList()).toEqual(newMessageList);
+    });
+  });
 });
