@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe MessageStore do
   EXAMPLE_MESSAGE_JSON = {"username" => "my_username", "body" => "hello I am a chat"}.freeze
   EXECUTABLE_MESSAGE_JSON = {"username" => "my_username", "body" => "MOV ax, 5d"}.freeze
+  EXECUTABLE_MESSAGE_JSON_2 = {"username" => "my_username", "body" => "MOV bx, 10d"}.freeze
 
   describe "#post_message" do
     it "returns a representative message object" do
@@ -27,7 +28,7 @@ RSpec.describe MessageStore do
       context "and a non-executable message" do
         let(:message) { subject.post_message(EXAMPLE_MESSAGE_JSON) }
 
-        it "sets the messate state to the initial state" do
+        it "sets the message state to the initial state" do
           expect(message.state).to eq({
             "ax" => 0,
             "bx" => 0,
@@ -52,7 +53,7 @@ RSpec.describe MessageStore do
     end
 
     context "with a message store containing state already" do
-      before { subject.post_message({"username" => "my_username", "body" => "MOV bx, 10d"}) }
+      before { subject.post_message(EXECUTABLE_MESSAGE_JSON_2) }
 
       context "and a non-executable message" do
         let(:message) { subject.post_message(EXAMPLE_MESSAGE_JSON) }
@@ -109,6 +110,30 @@ RSpec.describe MessageStore do
         end
         old_message = Message.create(EXAMPLE_MESSAGE_JSON.merge(created_at: 1.year.ago))
         expect(subject.latest_messages).to_not include old_message
+      end
+    end
+  end
+
+  describe "#latest_state" do
+    context "with empty store" do
+      it "returns the initial state" do
+        expect(subject.latest_state).to eq({
+          ax: 0,
+          bx: 0,
+          cx: 0,
+          dx: 0
+        })
+      end
+    end
+
+    context "with some messages in the store" do
+      it "returns the state of the latest message" do
+        message_newer = Message.create(username: "who", body: "cares", state: {a: 5})
+        message_older = Message.create(username: "who", body: "cares", state: {a: 9}, created_at: 1.year.ago)
+
+        expect(subject.latest_state).to eq({
+          "a" => 5
+        })
       end
     end
   end

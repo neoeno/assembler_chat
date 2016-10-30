@@ -19,6 +19,10 @@ class ChatEvent
     self.new("stateChange", state)
   end
 
+  def self.sync_state(state)
+    self.new("syncState", state)
+  end
+
   # We let the default as_json method serialize our instance variables
 
   class SimpleMessagePresenter

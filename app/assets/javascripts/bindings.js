@@ -16,7 +16,8 @@ $(document).ready(function() {
     received: EventRouter('type', {
       newMessage: handleNewMessage,
       syncMessages: handleSyncMessages,
-      stateChange: handleStateChange
+      stateChange: handleStateChange,
+      syncState: handleStateChange // For the moment this is the same as above
     })
   });
 

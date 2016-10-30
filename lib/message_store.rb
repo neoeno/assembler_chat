@@ -21,14 +21,17 @@ class MessageStore
     Message.order(created_at: :asc).last(100)
   end
 
+  def latest_state
+    latest_message = latest_messages.last
+    prior_state = latest_message.try(:state) || @message_interpreter.initial_state
+  end
+
   private def safe_params(raw_params)
     params = ActionController::Parameters.new(raw_params)
     params.permit(:username, :body)
   end
 
   private def interpret(message_body)
-    latest_message = latest_messages.last
-    prior_state = latest_message.try(:state) || @message_interpreter.initial_state
-    @message_interpreter.interpret(prior_state, message_body)
+    @message_interpreter.interpret(latest_state, message_body)
   end
 end

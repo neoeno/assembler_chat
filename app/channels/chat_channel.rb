@@ -14,8 +14,7 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   private def transmit_message_sync_event!
-    transmit(
-      ChatEvent.sync_messages(@message_store.latest_messages)
-    )
+    transmit(ChatEvent.sync_messages(@message_store.latest_messages))
+    transmit(ChatEvent.sync_state(@message_store.latest_state))
   end
 end
