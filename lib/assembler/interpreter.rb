@@ -9,8 +9,22 @@ class Assembler::Interpreter
   end
 
   def interpret(state, statement)
-    lexed = Assembler::Lexer.lex(statement)
-    parsed = Assembler::Parser.parse(lexed)
-    Assembler::Executor.execute(state, parsed)
+    Assembler::Executor.execute(state, parse(lex(statement)))
+  end
+
+  private def lex(statement)
+    begin
+      Assembler::Lexer.lex(statement)
+    rescue RLTK::LexingError => e
+      raise Assembler::InterpreterException.new(e)
+    end
+  end
+
+  private def parse(lexed)
+    begin
+      Assembler::Parser.parse(lexed)
+    rescue RLTK::NotInLanguage => e
+      raise Assembler::InterpreterException.new(e)
+    end
   end
 end

@@ -1,4 +1,4 @@
-class StringLengthAccumulationEngine
+class StringLengthAccumulationInterpreter
   def initial_state
     {
       total_length: 0

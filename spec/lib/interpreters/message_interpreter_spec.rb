@@ -1,8 +1,8 @@
 require 'rails_helper'
-require 'support/string_length_accumulation_engine';
+require 'support/string_length_accumulation_interpreter';
 
 RSpec.describe Interpreters::MessageInterpreter do
-  let(:engine) { StringLengthAccumulationEngine.new }
+  let(:engine) { StringLengthAccumulationInterpreter.new }
   subject { described_class.new(engine) }
 
   describe "#initial_state" do
