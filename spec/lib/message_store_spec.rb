@@ -118,10 +118,10 @@ RSpec.describe MessageStore do
     context "with empty store" do
       it "returns the initial state" do
         expect(subject.latest_state).to eq({
-          ax: 0,
-          bx: 0,
-          cx: 0,
-          dx: 0
+          "ax" => 0,
+          "bx" => 0,
+          "cx" => 0,
+          "dx" => 0
         })
       end
     end
