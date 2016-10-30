@@ -1,4 +1,5 @@
 require_relative "./chat_message_section"
+require_relative "./machine_state_section"
 
 class ChatIndexPage < SitePrism::Page
   set_url "/"
@@ -8,6 +9,7 @@ class ChatIndexPage < SitePrism::Page
   element :send_button, "#chat_message_form_submit"
 
   sections :messages, ChatMessageSection, ".test-message"
+  section :machine_state, MachineStateSection, ".test-machine-state"
 
   def username
     username_field.value
