@@ -30,7 +30,7 @@ open http://localhost:3000/
 * Reasonably happy with the data flow too. I hate rails apps where you can never tell where the data you're dealing with has come from — some from APIs, some from scraping your own DOM, some from random JSON blobs inserted in the views. Here we've managed to shove nearly all of it through ActionCable and it pays off in reduced complexity I think.
 * The Assembly Interpreter is my best attempt a parser/executor yet! Which isn't saying much but I'm fairly pleased with it. It seems like writing the whole instruction set would be possible within roughly this architecture.
   * I'd like to get inline execution working too, where you can type stuff like: "So if we now execute `mov ax, 3d`..."
-  * The testing story around this is a bit confused, and which bit should be tested is a tricky question. Do we test the lexer, parser, and interpreter separately for each type of statement? Or two more lightly and one more heavily, e.g. integration? Probably should have been the latter.
+  * ~~The testing story around this is a bit confused, and which bit should be tested is a tricky question. Do we test the lexer, parser, and interpreter separately for each type of statement? Or two more lightly and one more heavily, e.g. integration? Probably should have been the latter.~~ — Solved this one with some test utils I think!
   * Also only supporting decimal numbers was a bit of a cop-out!
 * The `MessageStore`... eh. Still not sure about that. It serves the purpose of keeping logic out of the ActionCable code where we can't easily test it.
   * Could it have gone in the `Message` model? Theoretically yes, but to me it seems a lot like presentation logic in places.
