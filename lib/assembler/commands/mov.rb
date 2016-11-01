@@ -5,15 +5,16 @@ class Assembler::Commands::Mov
   end
 
   def execute(state)
-    state[@dest] = evaluate_expression(state, @source)
-    state
+    state.generate do |s|
+      s[@dest] = evaluate_expression(state, @source)
+    end
   end
 
 
   private def evaluate_expression(state, expression)
     if expression[0] == :register then
       # If this is a register we need to fetch it from state
-      return state[expression[1]]
+      return state.get(expression[1])
     elsif expression[0] == :constant
       # If it's a constant we can use it straight
       expression[1]

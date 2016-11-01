@@ -41,14 +41,14 @@ RSpec.describe Assembler::State do
     end
   end
 
-  describe "#get_state" do
+  describe "#get" do
     subject { described_class.new("ax" => 5)}
     it "gets the state with the key of the arg (string)" do
-      expect(subject.get_state("ax")).to eq 5
+      expect(subject.get("ax")).to eq 5
     end
 
     it "gets the state with the key of the arg (symbol)" do
-      expect(subject.get_state(:ax)).to eq 5
+      expect(subject.get(:ax)).to eq 5
     end
   end
 

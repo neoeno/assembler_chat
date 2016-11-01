@@ -4,7 +4,8 @@ class Assembler::Commands::Dec
   end
 
   def execute(state)
-    state[@register] -= 1
-    state
+    state.generate do |s|
+      s[@register] -= 1
+    end
   end
 end

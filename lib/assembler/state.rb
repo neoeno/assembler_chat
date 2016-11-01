@@ -11,12 +11,12 @@ class Assembler::State
     return self.class.new(new_state)
   end
 
-  def get_state(key)
+  def get(key)
     @state[key.to_s]
   end
 
   def method_missing(method, *args)
-    return get_state(method) if @state.has_key?(method.to_s)
+    return get(method) if @state.has_key?(method.to_s)
     super
   end
 

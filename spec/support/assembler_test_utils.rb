@@ -1,16 +1,16 @@
 RSpec.shared_context "assembler_utils" do
-  let(:assembler) { Assembler::Interpreter.new }
+  let(:interpreter) { Assembler::Interpreter.new }
   StateDiff = Struct.new(:state_before, :state_after)
 
   def initial_state(modifications={})
-    assembler.initial_state.merge(modifications.stringify_keys)
+    interpreter.initial_state.merge(modifications)
   end
 
   def execute(state, statement)
     begin
       StateDiff.new(
         state,
-        assembler.interpret(state, statement)
+        interpreter.interpret(state, statement)
       )
     rescue Assembler::InterpreterException => e
       return e

@@ -1,15 +1,11 @@
 class Assembler::Interpreter
   def initial_state
-    {
-      "ax" => 0,
-      "bx" => 0,
-      "cx" => 0,
-      "dx" => 0
-    }
+    Assembler::State.new.to_h
   end
 
   def interpret(state, statement)
-    Assembler::Executor.execute(state, parse(lex(statement)))
+    state = Assembler::State.new(state)
+    Assembler::Executor.execute(state, parse(lex(statement))).to_h
   end
 
   private def lex(statement)
