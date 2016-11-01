@@ -45,4 +45,36 @@ RSpec.describe "Assembler Integration" do
       expect(execute(initial_state, "dec 5d")).to raise_interpreter_error
     end
   end
+
+  describe "add" do
+    it "adds constant values to a register" do
+      expect(execute(initial_state(ax: 1), "add AX, 5d")).to set_registers(ax: 6)
+    end
+
+    it "adds register values to a register" do
+      expect(execute(initial_state(ax: 1, bx: 3), "add AX, BX")).to set_registers(ax: 4, bx: 3)
+    end
+
+    it "cannot add a value into a constant" do
+      expect(execute(initial_state, "add 5d, BX")).to raise_interpreter_error
+    end
+  end
+
+  describe "sub" do
+    it "subtracts constant values from a register" do
+      expect(execute(initial_state(ax: 5), "sub AX, 4d")).to set_registers(ax: 1)
+    end
+
+    it "subtracts register values from a register" do
+      expect(execute(initial_state(ax: 5, bx: 3), "sub AX, BX")).to set_registers(ax: 2, bx: 3)
+    end
+
+    it "wraps negative values round to positives" do
+      expect(execute(initial_state(ax: 1, bx: 3), "sub AX, BX")).to set_registers(ax: 254, bx: 3)
+    end
+
+    it "cannot subtract a value from a constant" do
+      expect(execute(initial_state, "sub 5d, BX")).to raise_interpreter_error
+    end
+  end
 end

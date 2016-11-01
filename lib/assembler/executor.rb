@@ -4,7 +4,9 @@ class Assembler::Executor
   COMMANDS = {
     "mov" => Assembler::Commands::Mov,
     "inc" => Assembler::Commands::Inc,
-    "dec" => Assembler::Commands::Dec
+    "dec" => Assembler::Commands::Dec,
+    "add" => Assembler::Commands::Add,
+    "sub" => Assembler::Commands::Sub
   }.freeze
 
   def self.execute(state, statement)

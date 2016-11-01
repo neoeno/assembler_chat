@@ -14,11 +14,11 @@ class Assembler::Byte
   end
 
   def -(obj)
-    Assembler::Byte.from_i(@integer - obj)
+    Assembler::Byte.from_i(@integer - obj.to_i)
   end
 
   def +(obj)
-    Assembler::Byte.from_i(@integer + obj)
+    Assembler::Byte.from_i(@integer + obj.to_i)
   end
 
   def ==(obj)
