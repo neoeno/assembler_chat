@@ -26,7 +26,7 @@ var RenderFactory = function(Elements) {
   function machineState(state) {
     Object.keys(state).forEach(function(register) {
       if (Elements.$machineState[register]) {
-        Elements.$machineState[register].text(state[register]);
+        Elements.$machineState[register].text(state[register].join(""));
       }
     });
   }
