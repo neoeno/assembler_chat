@@ -30,10 +30,10 @@ RSpec.describe MessageStore do
 
         it "sets the message state to the initial state" do
           expect(message.state).to eq({
-            "ax" => 0,
-            "bx" => 0,
-            "cx" => 0,
-            "dx" => 0
+            "ax" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "bx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "cx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "dx" => [0, 0, 0, 0, 0, 0, 0, 0]
           })
         end
       end
@@ -43,10 +43,10 @@ RSpec.describe MessageStore do
 
         it "executes on the initial state" do
           expect(message.state).to eq({
-            "ax" => 5,
-            "bx" => 0,
-            "cx" => 0,
-            "dx" => 0
+            "ax" => [0, 0, 0, 0, 0, 1, 0, 1],
+            "bx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "cx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "dx" => [0, 0, 0, 0, 0, 0, 0, 0]
           })
         end
       end
@@ -60,10 +60,10 @@ RSpec.describe MessageStore do
 
         it "sets the messate state to the initial state" do
           expect(message.state).to eq({
-            "ax" => 0,
-            "bx" => 10,
-            "cx" => 0,
-            "dx" => 0
+            "ax" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "bx" => [0, 0, 0, 0, 1, 0, 1, 0],
+            "cx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "dx" => [0, 0, 0, 0, 0, 0, 0, 0]
           })
         end
       end
@@ -73,10 +73,10 @@ RSpec.describe MessageStore do
 
         it "executes on the initial state" do
           expect(message.state).to eq({
-            "ax" => 5,
-            "bx" => 10,
-            "cx" => 0,
-            "dx" => 0
+            "ax" => [0, 0, 0, 0, 0, 1, 0, 1],
+            "bx" => [0, 0, 0, 0, 1, 0, 1, 0],
+            "cx" => [0, 0, 0, 0, 0, 0, 0, 0],
+            "dx" => [0, 0, 0, 0, 0, 0, 0, 0]
           })
         end
       end

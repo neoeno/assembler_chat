@@ -34,7 +34,7 @@ RSpec.describe "Assembler Integration" do
 
   describe "dec" do
     it "decrements zero registers" do
-      expect(execute(initial_state, "dec AX")).to set_registers(ax: -1)
+      expect(execute(initial_state, "dec AX")).to set_registers(ax: 255)
     end
 
     it "decrements non-zero registers" do
