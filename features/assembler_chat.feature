@@ -19,13 +19,25 @@ Feature: Assembler Chat
   Scenario: Our commands operate on the previous state without clobbering it
     Given an empty list
     When I post "mov ax, 1d" to the list
-    When I post "mov bx, 2d" to the list
-    When I post "mov cx, 3d" to the list
-    When I post "mov dx, 4d" to the list
+    And I post "mov bx, 2d" to the list
+    And I post "mov cx, 3d" to the list
+    And I post "mov dx, 4d" to the list
     Then I see register "AX" is 00000001
-    Then I see register "BX" is 00000010
-    Then I see register "CX" is 00000011
-    Then I see register "DX" is 00000100
+    And I see register "BX" is 00000010
+    And I see register "CX" is 00000011
+    And I see register "DX" is 00000100
+
+  @javascript
+  Scenario: We can run a simple program
+    Given an empty list
+    When I post "mov bx, 1d" to the list
+    And I post "add bx, 2d" to the list
+    And I post "inc ax" to the list
+    And I post "sub bx, ax" to the list
+    Then I see register "AX" is 00000001
+    And I see register "BX" is 00000010
+    And I see register "CX" is 00000000
+    And I see register "DX" is 00000000
 
   @javascript
   Scenario: Our commands can use all sorts of numbers
