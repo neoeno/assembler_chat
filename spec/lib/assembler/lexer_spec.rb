@@ -27,5 +27,50 @@ RSpec.describe Assembler::Lexer do
         [:EOS]
       ]
     end
+
+    it "lexes decimal numbers" do
+      statement = "10d"
+      lexed = described_class.lex(statement)
+      expect(lexed_to_comparable(lexed)).to eq [
+        [:NUMBER, 10],
+        [:EOS]
+      ]
+    end
+
+    it "lexes decimal numbers without the d suffix" do
+      statement = "10"
+      lexed = described_class.lex(statement)
+      expect(lexed_to_comparable(lexed)).to eq [
+        [:NUMBER, 10],
+        [:EOS]
+      ]
+    end
+
+    it "lexes octal numbers" do
+      statement = "17o"
+      lexed = described_class.lex(statement)
+      expect(lexed_to_comparable(lexed)).to eq [
+        [:NUMBER, 15],
+        [:EOS]
+      ]
+    end
+
+    it "lexes hex numbers" do
+      statement = "1Ah"
+      lexed = described_class.lex(statement)
+      expect(lexed_to_comparable(lexed)).to eq [
+        [:NUMBER, 26],
+        [:EOS]
+      ]
+    end
+
+    it "lexes binary numbers" do
+      statement = "0101b"
+      lexed = described_class.lex(statement)
+      expect(lexed_to_comparable(lexed)).to eq [
+        [:NUMBER, 5],
+        [:EOS]
+      ]
+    end
   end
 end

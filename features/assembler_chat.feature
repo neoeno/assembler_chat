@@ -26,3 +26,17 @@ Feature: Assembler Chat
     Then I see register "BX" is 00000010
     Then I see register "CX" is 00000011
     Then I see register "DX" is 00000100
+
+  @javascript
+  Scenario: Our commands can use all sorts of numbers
+    Given an empty list
+    When I post "mov ax, 255" to the list
+    Then I see register "AX" is 11111111
+    When I post "mov ax, 254d" to the list
+    Then I see register "AX" is 11111110
+    When I post "mov ax, FDh" to the list
+    Then I see register "AX" is 11111101
+    When I post "mov ax, 11111100b" to the list
+    Then I see register "AX" is 11111100
+    When I post "mov ax, 373o" to the list
+    Then I see register "AX" is 11111011
