@@ -31,6 +31,7 @@ open http://localhost:3000/
 * The Assembly Interpreter is my best attempt a parser/executor yet! Which isn't saying much but I'm fairly pleased with it. It seems like writing the whole instruction set would be possible within roughly this architecture.
   * I'd like to get inline execution working too, where you can type stuff like: "So if we now execute `mov ax, 3d`..."
   * ~~The testing story around this is a bit confused, and which bit should be tested is a tricky question. Do we test the lexer, parser, and interpreter separately for each type of statement? Or two more lightly and one more heavily, e.g. integration? Probably should have been the latter.~~ — Solved this one with some test utils I think!
+  * Having machine state as a hash wasn't a very inspired decision, and involved a bunch of hash keys nonsense that shouldn't have been required. Then again maybe it was a good first step. In future I think state should reasonably be an object, maybe a façade to a few other objects like registers or memory. Then we can abstract away stuff like bit twiddling or the way some registers overlap.
   * Also only supporting decimal numbers was a bit of a cop-out!
 * The `MessageStore`... eh. Still not sure about that. It serves the purpose of keeping logic out of the ActionCable code where we can't easily test it.
   * Could it have gone in the `Message` model? Theoretically yes, but to me it seems a lot like presentation logic in places.
