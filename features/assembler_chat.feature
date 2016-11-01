@@ -7,13 +7,13 @@ Feature: Assembler Chat
   Scenario: We can post an assembler command to the list and see the state change
     Given an empty list
     When I post "mov ax, 1d" to the list
-    Then I see register "AX" is 1
+    Then I see register "AX" is 00000001
 
   @javascript
   Scenario: We can see state updates from other users
     Given an empty list
     When Geoff posts "mov ax, 1d" to the list
-    Then I see register "AX" is 1
+    Then I see register "AX" is 00000001
 
   @javascript
   Scenario: Our commands operate on the previous state without clobbering it
@@ -22,7 +22,7 @@ Feature: Assembler Chat
     When I post "mov bx, 2d" to the list
     When I post "mov cx, 3d" to the list
     When I post "mov dx, 4d" to the list
-    Then I see register "AX" is 1
-    Then I see register "BX" is 2
-    Then I see register "CX" is 3
-    Then I see register "DX" is 4
+    Then I see register "AX" is 00000001
+    Then I see register "BX" is 00000010
+    Then I see register "CX" is 00000011
+    Then I see register "DX" is 00000100
