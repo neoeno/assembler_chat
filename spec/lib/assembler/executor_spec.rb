@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/assembler_state_utils'
 
 RSpec.describe Assembler::Executor do
   describe ".execute" do
@@ -6,12 +7,7 @@ RSpec.describe Assembler::Executor do
       statement = ["mov", "ax", [:constant, 1]]
       initial_state = Assembler::State.new
       state = described_class.execute(initial_state, statement)
-      expect(state.to_h).to eq({
-        "ax" => 1,
-        "bx" => 0,
-        "cx" => 0,
-        "dx" => 0
-      })
+      expect(state).to eq_state(ax: 1, bx: 0, cx: 0, dx: 0)
     end
   end
 end
