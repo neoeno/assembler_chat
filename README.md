@@ -1,8 +1,8 @@
 # Assembler Chat
 
-This is a chat app that also interprets inline assembler code and visusalises
-the machine state alongside. Actually it doesn't do that last bit yet! But it
-will within a few hours.
+This is a chat app that also interprets inline assembler code and visualises
+the machine state alongside. It only support `inc`, `dec` and `mov` instructions
+so far, and only as relatively crude decimal operations. More to come!
 
 ## Quickstart
 
