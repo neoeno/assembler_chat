@@ -26,9 +26,25 @@ var RenderFactory = function(Elements) {
   function machineState(state) {
     Object.keys(state).forEach(function(register) {
       if (Elements.$machineState[register]) {
-        Elements.$machineState[register].text(state[register].join(""));
+        var binaryString = state[register].join("");
+        var $hex = $("<div class='register-representation test-register-hex'>").text(bin2hex(binaryString));
+        var $dec = $("<div class='register-representation test-register-dec'>").text(bin2dec(binaryString));
+        var $bin = $("<div class='register-representation test-register-bin'>").text(binaryString);
+        Elements.$machineState[register].html([$hex, $dec, $bin]);
       }
     });
+  }
+
+  function bin2hex(binaryString) {
+    var hex = parseInt(binaryString, 2).toString(16).toUpperCase();
+    var pad = "00";
+    return pad.substring(0, pad.length - hex.length) + hex;
+  }
+
+  function bin2dec(binaryString) {
+    var hex = parseInt(binaryString, 2).toString(10).toUpperCase();
+    var pad = "000";
+    return pad.substring(0, pad.length - hex.length) + hex;
   }
 
   return {

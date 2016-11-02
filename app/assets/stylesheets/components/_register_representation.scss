@@ -1,0 +1,9 @@
+.register-representation {
+  border-right: 1px solid currentColor;
+  padding: 0.4em;
+  text-align: center;
+
+  &:last-child {
+    border-right: 0;
+  }
+}
