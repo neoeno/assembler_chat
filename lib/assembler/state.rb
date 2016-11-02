@@ -1,9 +1,9 @@
 class Assembler::State
   DEFAULT_STATE = {
-    "ax" => Assembler::Byte.new,
-    "bx" => Assembler::Byte.new,
-    "cx" => Assembler::Byte.new,
-    "dx" => Assembler::Byte.new
+    "ax" => Assembler::Word.new,
+    "bx" => Assembler::Word.new,
+    "cx" => Assembler::Word.new,
+    "dx" => Assembler::Word.new
   }.freeze
 
   def initialize(initial_state = {})
@@ -41,12 +41,12 @@ class Assembler::State
   private def initialize_state!(initial_state)
     initial_state = initial_state.stringify_keys
     initial_state = initial_state.map do |key, value|
-      if value.is_a? Assembler::Byte
+      if value.is_a? Assembler::Word
         [key, value]
       elsif value.is_a? Array
-        [key, Assembler::Byte.new(value)]
+        [key, Assembler::Word.new(value)]
       else
-        [key, Assembler::Byte.from_i(value)]
+        [key, Assembler::Word.from_i(value)]
       end
     end.to_h
     @state = DEFAULT_STATE.merge(initial_state).freeze

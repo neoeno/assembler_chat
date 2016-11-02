@@ -1,11 +1,11 @@
-class Assembler::Byte
-  LENGTH = 8
+class Assembler::Word
+  LENGTH = 16
 
   def self.from_i(integer)
     new(integer_to_bits(integer))
   end
 
-  def initialize(bits=[0,0,0,0,0,0,0,0])
+  def initialize(bits = self.class.integer_to_bits(0))
     @integer = self.class.bits_to_integer(bits) # Ha! Fooled you
   end
 
@@ -14,15 +14,15 @@ class Assembler::Byte
   end
 
   def -(obj)
-    Assembler::Byte.from_i(@integer - obj.to_i)
+    Assembler::Word.from_i(@integer - obj.to_i)
   end
 
   def +(obj)
-    Assembler::Byte.from_i(@integer + obj.to_i)
+    Assembler::Word.from_i(@integer + obj.to_i)
   end
 
   def ==(obj)
-    return false unless obj.try(:is_a?, Assembler::Byte)
+    return false unless obj.try(:is_a?, Assembler::Word)
     bits == obj.bits
   end
 
@@ -31,11 +31,11 @@ class Assembler::Byte
   end
 
   def to_s
-    bits.join
+    @integer.to_s(16).rjust(LENGTH/4, "0")+"h"
   end
 
   def inspect
-    "BYTE[#{to_s}, #{to_i}]"
+    "WORD[#{to_s}, #{to_i}]"
   end
 
   def to_i
@@ -49,7 +49,7 @@ class Assembler::Byte
 
   def self.bits_to_integer(bits) # http://stackoverflow.com/a/10770876
     # No such luck the other way around tho. This uses bitwise or and bit shift
-    # to build up the right byte as an integer
+    # to build up the right bits as an integer
     bits.reverse.each_with_index.reduce(0) do |memo, (val, idx)|
       memo |= val << idx
     end

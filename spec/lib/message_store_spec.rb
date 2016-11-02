@@ -30,10 +30,10 @@ RSpec.describe MessageStore do
 
         it "sets the message state to the initial state" do
           expect(message.state).to eq({
-            "ax" => i_to_byte(0),
-            "bx" => i_to_byte(0),
-            "cx" => i_to_byte(0),
-            "dx" => i_to_byte(0)
+            "ax" => i_to_word(0),
+            "bx" => i_to_word(0),
+            "cx" => i_to_word(0),
+            "dx" => i_to_word(0)
           })
         end
       end
@@ -43,10 +43,10 @@ RSpec.describe MessageStore do
 
         it "executes on the initial state" do
           expect(message.state).to eq({
-            "ax" => i_to_byte(5),
-            "bx" => i_to_byte(0),
-            "cx" => i_to_byte(0),
-            "dx" => i_to_byte(0)
+            "ax" => i_to_word(5),
+            "bx" => i_to_word(0),
+            "cx" => i_to_word(0),
+            "dx" => i_to_word(0)
           })
         end
       end
@@ -60,10 +60,10 @@ RSpec.describe MessageStore do
 
         it "sets the messate state to the initial state" do
           expect(message.state).to eq({
-            "ax" => i_to_byte(0),
-            "bx" => i_to_byte(10),
-            "cx" => i_to_byte(0),
-            "dx" => i_to_byte(0)
+            "ax" => i_to_word(0),
+            "bx" => i_to_word(10),
+            "cx" => i_to_word(0),
+            "dx" => i_to_word(0)
           })
         end
       end
@@ -73,10 +73,10 @@ RSpec.describe MessageStore do
 
         it "executes on the initial state" do
           expect(message.state).to eq({
-            "ax" => i_to_byte(5),
-            "bx" => i_to_byte(10),
-            "cx" => i_to_byte(0),
-            "dx" => i_to_byte(0)
+            "ax" => i_to_word(5),
+            "bx" => i_to_word(10),
+            "cx" => i_to_word(0),
+            "dx" => i_to_word(0)
           })
         end
       end
@@ -118,10 +118,10 @@ RSpec.describe MessageStore do
     context "with empty store" do
       it "returns the initial state" do
         expect(subject.latest_state).to eq({
-          "ax" => Assembler::Byte.from_i(0),
-          "bx" => Assembler::Byte.from_i(0),
-          "cx" => Assembler::Byte.from_i(0),
-          "dx" => Assembler::Byte.from_i(0)
+          "ax" => Assembler::Word.from_i(0),
+          "bx" => Assembler::Word.from_i(0),
+          "cx" => Assembler::Word.from_i(0),
+          "dx" => Assembler::Word.from_i(0)
         })
       end
     end

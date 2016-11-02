@@ -33,7 +33,7 @@ RSpec.describe "Assembler Integration" do
 
   describe "dec" do
     it "decrements zero registers" do
-      expect(execute(initial_state, "dec AX")).to set_registers(ax: 255)
+      expect(execute(initial_state, "dec AX")).to set_registers(ax: 65535)
     end
 
     it "decrements non-zero registers" do
@@ -69,7 +69,7 @@ RSpec.describe "Assembler Integration" do
     end
 
     it "wraps negative values round to positives" do
-      expect(execute(initial_state(ax: 1, bx: 3), "sub AX, BX")).to set_registers(ax: 254, bx: 3)
+      expect(execute(initial_state(ax: 1, bx: 3), "sub AX, BX")).to set_registers(ax: 65534, bx: 3)
     end
 
     it "cannot subtract a value from a constant" do
