@@ -22,19 +22,20 @@ class Assembler::Byte
   end
 
   def ==(obj)
-    @integer == obj
+    return false unless obj.try(:is_a?, Assembler::Byte)
+    bits == obj.bits
   end
 
-  def as_json(_)
+  def as_json(_={})
     bits
   end
 
   def to_s
-    @integer.to_s
+    bits.join
   end
 
   def inspect
-    @integer.inspect
+    "BYTE[#{to_s}, #{to_i}]"
   end
 
   def to_i

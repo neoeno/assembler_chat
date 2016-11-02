@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/assembler_test_utils'
 
 RSpec.describe "Assembler Integration" do
   include_context "assembler_utils"

@@ -22,8 +22,8 @@ RSpec.shared_context "assembler_utils" do
     match do |actual|
       return false unless actual.is_a? StateDiff
       actual.state_after.all? do |key, value|
-        comparison_value = expected.fetch(key, actual.state_before[key])
-        actual.state_after[key] == comparison_value
+        comparison_value = expected.fetch(key, actual.state_before[key].to_i)
+        actual.state_after[key].to_i == comparison_value
       end
     end
   end

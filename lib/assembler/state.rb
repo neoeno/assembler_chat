@@ -34,7 +34,7 @@ class Assembler::State
     @state.dup
   end
 
-  def to_s
+  def inspect
     to_h.to_s
   end
 

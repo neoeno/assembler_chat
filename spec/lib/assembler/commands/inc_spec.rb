@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/assembler_state_utils'
 
 RSpec.describe Assembler::Commands::Inc do
   describe "#execute" do
