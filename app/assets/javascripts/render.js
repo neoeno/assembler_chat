@@ -37,13 +37,13 @@ var RenderFactory = function(Elements) {
 
   function bin2hex(binaryString) {
     var hex = parseInt(binaryString, 2).toString(16).toUpperCase();
-    var pad = "00";
+    var pad = "0000";
     return pad.substring(0, pad.length - hex.length) + hex;
   }
 
   function bin2dec(binaryString) {
     var hex = parseInt(binaryString, 2).toString(10).toUpperCase();
-    var pad = "000";
+    var pad = "00000";
     return pad.substring(0, pad.length - hex.length) + hex;
   }
 
